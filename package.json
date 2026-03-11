@@ -1,0 +1,16 @@
+{
+  "name": "@jesbrian/gitlab-mcp-server",
+  "version": "0.1.0",
+  "description": "Old Version GitLab MCP Server",
+  "license": "ISC",
+  "author": "JesBrian",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "axios": "^1.6.0"
+  }
+}
