@@ -6,6 +6,9 @@
   "author": "JesBrian",
   "type": "commonjs",
   "main": "index.js",
+  "bin": {
+    "gitlab-mcp-server": "./index.js"
+  },
   "scripts": {
     "start": "node index.js"
   },
