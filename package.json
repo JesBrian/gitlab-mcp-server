@@ -1,11 +1,14 @@
 {
   "name": "@jesbrian/gitlab-mcp-server",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Old Version GitLab MCP Server",
   "license": "ISC",
   "author": "JesBrian",
   "type": "commonjs",
   "main": "index.js",
+  "bin": {
+    "gitlab-mcp-server": "./index.js"
+  },
   "scripts": {
     "start": "node index.js"
   },
