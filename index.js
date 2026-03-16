@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
  * GitLab MCP Server
  * 基于 Model Context Protocol 的 GitLab API 服务
