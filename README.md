@@ -5,10 +5,30 @@
 ## 项目信息
 
 - **包名**: @jesbrian/gitlab-mcp-server
-- **版本**: 0.1.4
+- **版本**: 0.2.0
 - **类型**: CommonJS
 - **主入口**: index.js
 - **可执行文件**: gitlab-mcp-server
+- **配置模块**: lib/config/Config.js
+
+## 项目结构
+
+```
+gitlab-mcp-server/
+├── index.js                          # 主入口文件
+├── lib/
+│   ├── GitLabClient.js               # GitLab API 客户端
+│   └── config/                       # 配置模块目录
+│       └── Config.js                 # 集中配置文件
+├── package.json
+└── README.md
+```
+
+### 模块化设计
+
+- **GitLabClient.js**: 封装 GitLab API 调用的客户端类
+- **config/Config.js**: 集中管理所有配置项（GitLab 连接、客户端选项、MCP Server 配置、Tools 定义）
+- **index.js**: MCP Server 主逻辑，负责工具调用和请求处理
 
 ## 功能特性
 
@@ -25,7 +45,9 @@
     *   关闭 MR。
     *   轮询等待 MR 变为可合并状态（支持超时设置）。
 
-## 配置
+## 配置管理
+
+所有配置项已集中到 `lib/config/Config.js` 文件中，支持通过环境变量自定义：
 
 需要配置以下环境变量：
 
