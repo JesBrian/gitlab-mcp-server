@@ -1,2 +1,8 @@
-*.idea
+.idea
+.git
+.gitignore
+.agent
+.claude
+.opencode
 node_modules
+openspec

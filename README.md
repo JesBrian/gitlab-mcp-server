@@ -60,19 +60,6 @@ gitlab-mcp-server/
 
 ## 运行方式
 
-### 本地运行
-
-```bash
-# 方式一：使用 npm scripts
-npm start
-
-# 方式二：直接运行
-node index.js
-
-# 方式三：全局安装后使用命令
-gitlab-mcp-server
-```
-
 ### 作为 MCP Server 使用
 
 在 Claude Desktop 的配置文件中添加：
@@ -95,6 +82,21 @@ gitlab-mcp-server
 ```
 
 #### 方式二：本地路径运行
+
+本地启动项目后再配置 Claude Code：
+
+```bash
+# 克隆项目后，进入目录并安装依赖
+cd gitlab-mcp-server
+npm install
+
+# 本地启动服务（任选一种方式）
+npm start              # 方式一：使用 npm scripts
+node index.js          # 方式二：直接运行
+gitlab-mcp-server      # 方式三：全局安装后使用命令
+```
+
+在 Claude Code 的 MCP 配置中添加：
 
 ```json
 {
