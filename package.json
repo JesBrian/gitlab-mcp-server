@@ -1,6 +1,6 @@
 {
   "name": "@jesbrian/gitlab-mcp-server",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "GitLab MCP Server with Modular Configuration",
   "license": "ISC",
   "author": "JesBrian",

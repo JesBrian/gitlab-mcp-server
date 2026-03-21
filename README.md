@@ -5,7 +5,7 @@
 ## 项目信息
 
 - **包名**: @jesbrian/gitlab-mcp-server
-- **版本**: 0.2.0
+- **版本**: 0.2.1
 - **类型**: CommonJS
 - **主入口**: index.js
 - **可执行文件**: gitlab-mcp-server
