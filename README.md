@@ -1,70 +1,73 @@
 # GitLab MCP Server
 
-基于 Model Context Protocol (MCP) 的 GitLab API 服务。该服务器提供了一组工具，允许 AI 模型与 GitLab 实例进行交互，主要专注于分支管理和合并请求（MR）操作。
+> [!NOTE]
+> This documentation is available in [简体中文](./README.zh.md).
 
-## 项目信息
+A GitLab API server built on the Model Context Protocol (MCP). This server provides a set of tools that allow AI models to interact with GitLab instances, with a focus on branch management and merge request (MR) operations.
 
-- **包名**: @jesbrian/gitlab-mcp-server
-- **版本**: 0.2.2
-- **类型**: CommonJS
-- **主入口**: index.js
-- **可执行文件**: gitlab-mcp-server
-- **配置模块**: config/Config.js
+## Project Info
 
-## 项目结构
+- **Package**: @jesbrian/gitlab-mcp-server
+- **Version**: 0.2.4
+- **Type**: CommonJS
+- **Main Entry**: index.js
+- **Executable**: gitlab-mcp-server
+- **Config Module**: config/Config.js
+
+## Project Structure
 
 ```
 gitlab-mcp-server/
-├── index.js                          # 主入口文件
-├── config/                           # 配置目录
-│   └── Config.js                     # 集中配置文件
-├── lib/                              # 库目录
-│   └── GitLabClient.js               # GitLab API 客户端
+├── index.js                          # Main entry file
+├── config/                           # Config directory
+│   └── Config.js                     # Centralized config file
+├── lib/                              # Library directory
+│   └── GitLabClient.js               # GitLab API client
 ├── package.json
 └── README.md
 ```
 
-### 模块化设计
+### Modular Design
 
-- **GitLabClient.js**: 封装 GitLab API 调用的客户端类（根目录）
-- **config/Config.js**: 集中管理所有配置项（GitLab 连接、客户端选项、MCP Server 配置、Tools 定义）
-- **index.js**: MCP Server 主逻辑，负责工具调用和请求处理
+- **GitLabClient.js**: Client class encapsulating GitLab API calls (root directory)
+- **config/Config.js**: Centralized management for all configuration items (GitLab connection, client options, MCP Server config, Tools definitions)
+- **index.js**: MCP Server main logic, handles tool invocations and request processing
 
-## 功能特性
+## Features
 
-*   **用户管理**：获取当前 GitLab 用户信息。
-*   **项目管理**：搜索项目、获取项目 ID 映射和项目详细信息。
-*   **分支管理**：
-    *   获取仓库分支列表。
-    *   创建新分支（支持指定源分支/标签）。
-    *   删除分支。
-*   **合并请求 (MR) 管理**：
-    *   创建 MR（支持标准创建和自动识别公共仓库的快捷创建）。
-    *   获取 MR 状态（包括合并状态、冲突检测）。
-    *   执行合并操作。
-    *   关闭 MR。
-    *   轮询等待 MR 变为可合并状态（支持超时设置）。
+*   **User Management**: Get current GitLab user information.
+*   **Project Management**: Search projects, get project ID mappings, and retrieve project details.
+*   **Branch Management**:
+    *   List repository branches.
+    *   Create new branches (supports specifying source branch/tag).
+    *   Delete branches.
+*   **Merge Request (MR) Management**:
+    *   Create MRs (supports standard creation and quick creation for public repositories).
+    *   Get MR status (including merge status, conflict detection).
+    *   Execute merge operations.
+    *   Close MRs.
+    *   Poll and wait for MR to become mergeable (supports timeout settings).
 
-## 配置管理
+## Configuration
 
-所有配置项已集中到 `lib/config/Config.js` 文件中，支持通过环境变量自定义：
+All configuration items are centralized in `lib/config/Config.js`, customizable via environment variables:
 
-需要配置以下环境变量：
+Configure the following environment variables:
 
-| 变量名 | 描述 | 必填 | 默认值 |
+| Variable | Description | Required | Default |
 | :--- | :--- | :--- | :--- |
-| `GITLAB_URL` | GitLab 实例地址 (例如 `https://gitlab.example.com`) | 是 | - |
-| `GITLAB_PRIVATE_TOKEN` | GitLab 个人访问令牌 (Private Token) | 是 | - |
-| `TIMEOUT` | 请求超时时间 (毫秒) | 否 | 10000 |
-| `WAIT_INTERVAL` | 轮询等待间隔 (毫秒) | 否 | 2000 |
+| `GITLAB_URL` | GitLab instance URL (e.g., `https://gitlab.example.com`) | Yes | - |
+| `GITLAB_PRIVATE_TOKEN` | GitLab personal access token (Private Token) | Yes | - |
+| `TIMEOUT` | Request timeout in milliseconds | No | 10000 |
+| `WAIT_INTERVAL` | Polling interval in milliseconds | No | 2000 |
 
-## 运行方式
+## Usage
 
-### 作为 MCP Server 使用
+### As an MCP Server
 
-在 Claude Desktop 的配置文件中添加：
+Add to Claude Desktop configuration file:
 
-#### 方式一：使用 npx（推荐）
+#### Option 1: Using npx (Recommended)
 
 ```json
 {
@@ -81,22 +84,22 @@ gitlab-mcp-server/
 }
 ```
 
-#### 方式二：本地路径运行
+#### Option 2: Local Path
 
-本地启动项目后再配置 Claude Code：
+Start the project locally first, then configure Claude Code:
 
 ```bash
-# 克隆项目后，进入目录并安装依赖
+# After cloning the project, enter the directory and install dependencies
 cd gitlab-mcp-server
 npm install
 
-# 本地启动服务（任选一种方式）
-npm start              # 方式一：使用 npm scripts
-node index.js          # 方式二：直接运行
-gitlab-mcp-server      # 方式三：全局安装后使用命令
+# Start the service locally (choose one method)
+npm start              # Option 1: Use npm scripts
+node index.js          # Option 2: Run directly
+gitlab-mcp-server      # Option 3: Install globally and use command
 ```
 
-在 Claude Code 的 MCP 配置中添加：
+Add to Claude Code MCP configuration:
 
 ```json
 {
@@ -113,22 +116,22 @@ gitlab-mcp-server      # 方式三：全局安装后使用命令
 }
 ```
 
-## 可用工具
+## Available Tools
 
-### 用户与项目管理
-*   `get_current_user`: 获取当前 GitLab 用户信息。
-*   `get_project_ids`: 根据项目名称搜索并获取项目 ID 映射（返回不同命名空间下的项目 ID）。
-*   `get_project`: 获取指定项目的详细信息。
+### User & Project Management
+*   `get_current_user`: Get current GitLab user information.
+*   `get_project_ids`: Search projects by name and get project ID mappings (returns IDs across different namespaces).
+*   `get_project`: Get detailed information for a specified project.
 
-### 分支操作
-*   `get_repository_branches`: 获取项目的分支列表。
-*   `create_branch`: 创建新分支（可指定源分支/标签，默认为 master）。
-*   `delete_branch`: 删除分支。
+### Branch Operations
+*   `get_repository_branches`: List branches of a project.
+*   `create_branch`: Create a new branch (can specify source branch/tag, defaults to master).
+*   `delete_branch`: Delete a branch.
 
-### 合并请求 (MR)
-*   `create_merge_request`: 创建合并请求（支持自定义标题和描述）。
-*   `create_merge_request_to_public`: 快捷工具，自动识别个人仓库和公共仓库，创建从个人分支到公共仓库的 MR。
-*   `merge_branch`: 执行合并操作。
-*   `get_merge_request_status`: 获取 MR 的当前状态（包括合并状态、是否有冲突等）。
-*   `close_merge_request`: 关闭合并请求。
-*   `wait_for_mergeable_status`: 轮询等待 MR 变为可合并状态（支持超时设置，默认 5 分钟）。
+### Merge Request (MR)
+*   `create_merge_request`: Create a merge request (supports custom title and description).
+*   `create_merge_request_to_public`: Quick tool that auto-detects personal and public repositories, creates MR from personal branch to public repository.
+*   `merge_branch`: Execute merge operation.
+*   `get_merge_request_status`: Get current MR status (including merge status, conflicts, etc.).
+*   `close_merge_request`: Close a merge request.
+*   `wait_for_mergeable_status`: Poll and wait for MR to become mergeable (supports timeout, default 5 minutes).
