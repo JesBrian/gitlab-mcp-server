@@ -2,6 +2,14 @@
   "name": "@jesbrian/gitlab-mcp-server",
   "version": "0.2.2",
   "description": "GitLab MCP Server with Modular Configuration",
+  "keywords": [
+    "mcp",
+    "gitlab",
+    "modelcontextprotocol",
+    "ai",
+    "claude",
+    "mcp-server"
+  ],
   "license": "ISC",
   "author": "JesBrian",
   "type": "commonjs",
